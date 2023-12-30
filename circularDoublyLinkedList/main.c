@@ -2,10 +2,13 @@
 
 int main()
 {
-	printf("Circular Doubly Linked List v0.0.1\n\n");
+	printf("Circular Doubly Linked List v0.0.2\n\n");
 	int result = 0;
 	int nodeCount = 0;
+	int data = 0;
+	int position = 0;
 	struct dNode* list = NULL;
+	struct dNode* ptr = NULL;
 
 	for (int i = 0; i < 9; i++)
 	{
@@ -22,7 +25,12 @@ int main()
 		printf("List is empty.\n\n");
 	}
 	/// test code here: ////////////////////////////////////////
-	
+	position = 88;
+	result = returnPosPtr(list, position, &ptr);
+	printf("Position %d address: %p\n", position, ptr);
+	printf("Result: %d\n\n", result);
+	//
+	result = deletePtr(&list, ptr);
 	printf("Result: %d\n\n", result);
 	////////////////////////////////////////////////////////////
 	result = size(list, &nodeCount);
