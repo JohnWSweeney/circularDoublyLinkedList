@@ -1,6 +1,9 @@
 # circularDoublyLinkedList
 
 ## ChangeLog
+v0.0.3
+- Added returnFrontData, returnBackData, returnPosData, returnPtrData, updatePosData, and returnDataPos functions.
+
 v0.0.2
 - Updated deleteFront and deleteBack functions.
 - Added deletePos, deletePtr, returnPosPtr, and movePosFront functions.

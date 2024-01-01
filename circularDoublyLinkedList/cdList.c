@@ -177,6 +177,90 @@ int returnPosPtr(struct dNode* list, int pos, struct dNode** ptr)
 	return -1;
 }
 
+int returnFrontData(struct dNode* list, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+	*data = list->data;
+	return 0;
+}
+
+int returnBackData(struct dNode* list, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+	*data = list->prev->data;
+	return 0;
+}
+
+int returnPosData(struct dNode* list, int pos, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct dNode* head = list;
+	int tempPos = 0;
+	do {
+		if (tempPos == pos)
+		{
+			*data = list->data;
+			return 0;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return -1; // position not in list.
+}
+
+int returnPtrData(struct dNode* list, struct dNode* ptr, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+	if (ptr == NULL) return 2; // pointer is null.
+
+	struct dNode* head = list;
+	do {
+		if (list == ptr)
+		{
+			*data = list->data;
+			return 0;
+		}
+		list = list->next;
+	} while (list != head);
+	return -1; // pointer not in list.
+}
+
+int updatePosData(struct dNode* list, int pos, int data)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct dNode* head = list;
+	int tempPos = 0;
+	do {
+		if (tempPos == pos)
+		{
+			list->data = data;
+			return 0;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return -1;
+}
+
+int returnDataPos(struct dNode* list, int data, int* pos)
+{
+	if (list == NULL) return 1; // list is empty.
+	
+	struct dNode* head = list;
+	*pos = 0;
+	do {
+		if (list->data == data)
+		{
+			return 0;
+		}
+		++*pos;
+		list = list->next;
+	} while (list != head);
+	return -1; // position not in list.
+}
+
 int movePosFront(struct dNode** list, int pos)
 {
 	if (*list == NULL) return 1; // list is empty.
