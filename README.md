@@ -1,6 +1,9 @@
 # circularDoublyLinkedList
 
 ## ChangeLog
+v0.0.4
+- Added addPos function.
+
 v0.0.3
 - Added returnFrontData, returnBackData, returnPosData, returnPtrData, updatePosData, and returnDataPos functions.
 

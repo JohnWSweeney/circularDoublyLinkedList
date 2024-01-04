@@ -2,7 +2,7 @@
 
 int main()
 {
-	printf("Circular Doubly Linked List v0.0.3\n\n");
+	printf("Circular Doubly Linked List v0.0.4\n\n");
 	int result = 0;
 	int nodeCount = 0;
 	int data = 0;
@@ -10,7 +10,7 @@ int main()
 	struct dNode* list = NULL;
 	struct dNode* ptr = NULL;
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		addBack(&list, pow(i, 5));
 	}
@@ -25,12 +25,8 @@ int main()
 		printf("List is empty.\n\n");
 	}
 	/// test code here: ////////////////////////////////////////
-	data = 7776;
-	result = returnDataPos(list, data, &position);
-	if (result == 0)
-	{
-		printf("Data %d found in position %d.\n", data, position);
-	}
+	position = 1;
+	result = movePosUp(&list, position);
 	printf("Result: %d\n\n", result);
 	////////////////////////////////////////////////////////////
 	result = size(list, &nodeCount);

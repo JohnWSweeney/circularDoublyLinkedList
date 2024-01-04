@@ -60,6 +60,36 @@ int addBack(struct dNode** list, int data)
 	return 0;
 }
 
+int addPos(struct dNode** list, int pos, int data)
+{
+	if (*list == NULL) return 1; // list is empty.
+
+	struct dNode* head = *list;
+	int tempPos = 0;
+	do {
+		struct dNode* curr = *list;
+		if (tempPos == pos)
+		{
+			struct dNode* before = curr->prev;
+			struct dNode* newNode = malloc(sizeof(struct dNode));
+			newNode->data = data;
+			before->next = newNode;
+			newNode->prev = before;
+			newNode->next = curr;
+			curr->prev = newNode;
+			if (curr == head)
+			{
+				head = newNode;
+			}
+			*list = head;
+			return 0;
+		}
+		++tempPos;
+		*list = curr->next;
+	} while (*list != head);
+	return -1; // position not in list.
+}
+
 int deleteFront(struct dNode** list)
 {
 	if (*list == NULL) return 1; // list is empty.
