@@ -1,6 +1,9 @@
 # circularDoublyLinkedList
 
 ## ChangeLog
+v0.0.5
+- Added returnMinPos, returnTailPos, and returnTailPtr functions.
+
 v0.0.4
 - Added addPos function.
 
