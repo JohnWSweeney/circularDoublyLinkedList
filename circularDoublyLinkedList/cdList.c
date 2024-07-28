@@ -1,4 +1,5 @@
 #include "cdList.h"
+#include "random.h"
 // sweeney's hand-rolled circular doubly linked list.
 //
 // pos = "position".
@@ -308,57 +309,50 @@ int returnDataPtr(struct dNode* list, int data, struct dNode** ptr)
 	return -1; // data not in list.
 }
 
-int movePosFront(struct dNode** list, int pos)
-{
-	if (*list == NULL) return 1; // list is empty.
-
-	if (pos == 0) return -2; // no action needed.
-
-	struct dNode* head = *list;
-	*list = head->next; // skep 
-	int tempPos = 1;
-	do {
-		struct dNode* curr = *list;
-		if (tempPos == pos)
-		{
-			struct dNode* before = curr->prev;
-			struct dNode* after = curr->next;
-			before->next = after;
-			after->prev = before;
-			struct dNode* tail = head->prev;
-			tail->next = curr;
-			curr->prev = tail;
-			curr->next = head;
-			head->prev = curr;
-			*list = curr;
-			return 0;
-		}
-		++tempPos;
-		*list = curr->next;
-	} while (*list != head);
-	*list = head; // position not in list, reset list.
-	return -1;
-}
-
 int returnMinPos(struct dNode* list, int* pos)
 {
 	if (list == NULL) return 1;
 	
 	struct dNode* head = list;
-	int tempPos = 0;
 	// initialize minimum.
-	int min = list->data;
-	*pos = tempPos;
-
-	while (list->next != head)
+	int min = head->data;
+	*pos = 0;
+	list = head->next;
+	// search remaining list.
+	int tempPos = 1;
+	while (list != head)
 	{
-		if (list->data < min)
+		if (min > list->data)
 		{
 			min = list->data;
 			*pos = tempPos;
 		}
-		list = list->next;
 		++tempPos;
+		list = list->next;
+	}
+	return 0;
+}
+
+int returnMaxPos(struct dNode* list, int* pos)
+{
+	if (list == NULL) return 1;
+
+	struct dNode* head = list;
+	// initialize maximum.
+	int max = head->data;
+	*pos = 0;
+	list = head->next;
+	// search remaining list.
+	int tempPos = 1;
+	while (list != head)
+	{
+		if (max < list->data)
+		{
+			max = list->data;
+			*pos = tempPos;
+		}
+		++tempPos;
+		list = list->next;
 	}
 	return 0;
 }
@@ -388,6 +382,72 @@ int returnTailPtr(struct dNode* list, struct dNode** ptr)
 	}
 	*ptr = list;
 	return 0;
+}
+
+int movePosFront(struct dNode** list, int pos)
+{
+	if (*list == NULL) return 1; // list is empty.
+
+	if (pos == 0) return -2; // no action needed.
+
+	struct dNode* head = *list;
+	*list = head->next; // skip ahead.
+	int tempPos = 1;
+	do {
+		struct dNode* curr = *list;
+		if (tempPos == pos)
+		{
+			struct dNode* before = curr->prev;
+			struct dNode* after = curr->next;
+			before->next = after;
+			after->prev = before;
+			struct dNode* tail = head->prev;
+			tail->next = curr;
+			curr->prev = tail;
+			curr->next = head;
+			head->prev = curr;
+			*list = curr;
+			return 0;
+		}
+		++tempPos;
+		*list = curr->next;
+	} while (*list != head);
+	*list = head; // position not in list, reset list.
+	return -1;
+}
+
+int movePosBack(struct dNode** list, int pos)
+{
+	if (*list == NULL) return 1;
+
+	struct dNode* head = *list;
+	struct dNode* tail = head->prev;
+	int tempPos = 0;
+	do {
+		struct dNode* curr = *list;
+		if (tempPos == pos)
+		{
+			if (pos == 0)
+			{
+				head = head->next;
+			}
+			else
+			{
+				struct dNode* before = curr->prev;
+				struct dNode* after = curr->next;
+				before->next = after;
+				after->prev = before;
+				tail->next = curr;
+				curr->prev = tail;
+				curr->next = head;
+				head->prev = curr;
+			}
+			*list = head;
+			return 0;
+		}
+		++tempPos;
+		*list = curr->next;
+	} while (*list != head);
 }
 
 int clear(struct dNode** list)

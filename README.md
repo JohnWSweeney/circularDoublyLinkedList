@@ -1,6 +1,11 @@
 # circularDoublyLinkedList
 
 ## ChangeLog
+v0.0.6
+- Added random number generator functions.
+- Added returnMaxPos function.
+- Updated returnMinPos function.
+
 v0.0.5
 - Added returnMinPos, returnTailPos, and returnTailPtr functions.
 

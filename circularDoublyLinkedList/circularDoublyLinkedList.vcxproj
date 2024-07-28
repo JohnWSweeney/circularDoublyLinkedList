@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="cdList.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="random.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cdList.h" />
     <ClInclude Include="nodes.h" />
+    <ClInclude Include="random.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

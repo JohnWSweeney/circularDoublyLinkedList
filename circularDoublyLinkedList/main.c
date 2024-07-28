@@ -1,12 +1,15 @@
 #include "cdList.h"
+#include "random.h"
 
 int main()
 {
-	printf("Circular Doubly Linked List v0.0.5\n\n");
+	printf("Circular Doubly Linked List v0.0.6\n\n");
 	int result = 0;
 	int nodeCount = 0;
 	int data = 0;
 	int position = 0;
+	int min = 0;
+	int max = 100;
 	struct dNode* list = NULL;
 	struct dNode* ptr = NULL;
 
