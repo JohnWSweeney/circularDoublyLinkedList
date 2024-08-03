@@ -1,6 +1,10 @@
 # circularDoublyLinkedList
 
 ## ChangeLog
+v0.0.7
+- Added populateList, evaluateList functions.
+- Added returnPtrPos, movePtrFront functions.
+
 v0.0.6
 - Added random number generator functions.
 - Added returnMaxPos function.
