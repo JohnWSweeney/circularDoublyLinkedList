@@ -1,6 +1,10 @@
 # circularDoublyLinkedList
 
 ## ChangeLog
+v0.0.8
+- Added movePtrBack function.
+- Updated populateList function.
+
 v0.0.7
 - Added populateList, evaluateList functions.
 - Added returnPtrPos, movePtrFront functions.

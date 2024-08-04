@@ -510,6 +510,41 @@ int movePosBack(struct dNode** list, int pos)
 	} while (*list != head);
 }
 
+int movePtrBack(struct dNode** list, struct dNode* ptr)
+{
+	if (*list == NULL) return 1; // list is empty.
+
+	struct dNode* head = *list; 
+	struct dNode* tail = head->prev;
+	if (ptr == tail) return -2; // no action needed.
+
+	do {
+		struct dNode* curr = *list;
+		if (curr == ptr)
+		{
+			if (ptr == head)
+			{
+				head = head->next;
+			}
+			else
+			{
+				struct dNode* before = curr->prev;
+				struct dNode* after = curr->next;
+				before->next = after;
+				after->prev = before;
+				tail->next = curr;
+				curr->prev = tail;
+				curr->next = head;
+				head->prev = curr;
+			}
+			*list = head;
+			return 0;		
+		}
+		*list = curr->next;
+	} while (*list != head);
+	return -1; // ptr not in list.
+}
+
 int clear(struct dNode** list)
 {
 	if (*list == NULL) return 1; // list is empty.
